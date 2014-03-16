@@ -15,7 +15,7 @@
       <!-- Korvaa ohessa olevat sanat GITHUBTUNNUS ja 
            REPOSITORIO omilla tiedoillasi: -->
       <li><a href="https://github.com/tl0/tsoha">Työn repositorio</a></li>
-      <li><a href="https://github.com/GITHUBTUNNUS/REPOSITORIO/blob/master/doc/dokumentaatio.pdf?raw=true">Työn dokumentaatio</a></li>
+      <li><a href="https://github.com/tl0/tsoha/raw/master/Dokumentointi/dokumentaatio.pdf">Työn dokumentaatio</a></li>
 
       <!-- Viikolla 2 voit laittaa kommentoidut linkitkin sivuille. 
            Ota kommenttimerkit pois sen kielen ympäriltä, jota käytät -->
