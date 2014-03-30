@@ -1,7 +1,18 @@
+CREATE SEQUENCE acc_ID_seq;
 CREATE SEQUENCE user_ID_seq;
+CREATE SEQUENCE img_ID_seq;
+
+CREATE TABLE account (
+  accID INTEGER NOT NULL default nextval('acc_ID_seq'),
+  email VARCHAR(100) NOT NULL,
+  password VARCHAR(60) NOT NULL,
+  admin BOOLEAN default false,
+  PRIMARY KEY(accID)
+);
 
 CREATE TABLE people (
   userID INTEGER NOT NULL default nextval('user_ID_seq'),
+  accID INTEGER NOT NULL REFERENCES account ON DELETE RESTRICT ON UPDATE CASCADE,
   name VARCHAR(100) NOT NULL,
   descr TEXT NULL,
   PRIMARY KEY (userID)
@@ -14,4 +25,23 @@ CREATE TABLE tags (
   PRIMARY KEY(userID, tagname)
 );
 
+CREATE TABLE images (
+  imgID INTEGER NOT NULL default nextval('img_ID_seq'),
+  userID INTEGER NOT NULL REFERENCES people ON DELETE RESTRICT ON UPDATE CASCADE,
+  imgpath TEXT NOT NULL,
+  created INTEGER NULL,
+  PRIMARY KEY(imgID, userID)
+);
+
+CREATE TABLE sessions (
+  sessID VARCHAR(60) NOT NULL,
+  userID INTEGER NOT NULL REFERENCES people ON DELETE CASCADE ON UPDATE CASCADE,
+  timecreated INTEGER NULL,
+  timeused INTEGER NULL,
+  ipaddr CIDR NULL,
+  PRIMARY KEY(sessID, userID)
+);
+
 ALTER SEQUENCE user_ID_seq OWNED BY people.userID;
+ALTER SEQUENCE acc_ID_seq OWNED BY account.accID;
+ALTER SEQUENCE img_ID_seq OWNED BY images.imgID;

@@ -18,6 +18,12 @@
 <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
 	<div class="container">
 		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
 			<a class="navbar-brand" href="/">Henkilögalleria</a>
 		</div>
 
@@ -28,6 +34,24 @@
 				<li><a href="#services">Lisää</a>
 				</li>
 				<li><a href="#contact">Tietoja</a>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav pull-right">
+				<li class="dropdown">
+					<a class="dropdown-toggle" href="#" data-toggle="dropdown">Kirjautuminen</a>
+					<div class="dropdown-menu" style="padding: 15px;">
+						<form role="form" style="width: 300px;">
+							<div class="form-group">
+								<label for="exampleInputEmail1">Sähköpostiosoite</label>
+								<input type="email" class="form-control" id="exampleInputEmail1" placeholder="aku.ankka@example.com">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputPassword1">Salasana</label>
+								<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Salasana">
+							</div>
+							<button type="submit" class="btn btn-default">Submit</button>
+						</form>
+					</div>
 				</li>
 			</ul>
 		</div>
