@@ -11,9 +11,15 @@
 	<title>Henkilögalleria</title>
 	<link href="css/bootstrap.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
+	<link href="css/jqcloud.css" rel="stylesheet">
+	<link href="css/bootstrap-tagsinput.css" rel="stylesheet">
+	<link href="css/bootstrap-editable.css" rel="stylesheet">
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<script src="js/bootstrap.js"></script>
+	<script src="js/bootstrap-tagsinput.min.js"></script>
+	<script src="js/jqcloud.min.js"></script>
+	<script src="js/bootstrap-editable.min.js"></script>
 </head>
 
 <body>
@@ -27,19 +33,19 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="/">Henkilögalleria</a>
+			<a class="navbar-brand" href="index.php">Henkilögalleria</a>
 		</div>
 
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
 			<ul class="nav navbar-nav">
-				<li><a href="#about">Henkilöt</a>
+				<li><a href="list.php">Henkilöt</a>
 				</li>
-				<li><a href="#services">Lisää</a>
+				<li><a href="add.php">Lisää</a>
 				</li>
-				<li><a href="#contact">Tietoja</a>
+				<li><a href="about.php">Tietoja</a>
 				</li>
 			</ul>
-			<ul class="nav navbar-nav pull-right">
+			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
 					<a class="dropdown-toggle" href="#" data-toggle="dropdown">Kirjautuminen</a>
 					<div class="dropdown-menu" style="padding: 15px;">
@@ -78,6 +84,8 @@
 
 		if(isset($data->innerContent)) {
 			showView($data->innerContent);
+		} else {
+			echo "Ei?";
 		}
 	?>
 
@@ -86,7 +94,7 @@
 	<footer>
 		<div class="row">
 			<div class="col-lg-12">
-				<p>TSOHA <?php echo session_id(); ?><br><?php var_dump($_COOKIE); ?></p>
+				<p>TSOHA</p>
 			</div>
 		</div>
 	</footer>
