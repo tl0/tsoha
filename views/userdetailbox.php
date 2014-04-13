@@ -1,5 +1,5 @@
 <?php
-$stmt = $db->prepare("SELECT * FROM people");
+$stmt = getDB()->prepare("SELECT * FROM people WHERE published = true ORDER BY random() LIMIT 4");
 
 $stmt->execute();
 

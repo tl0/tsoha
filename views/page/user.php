@@ -3,7 +3,7 @@ global $user;
 ?><div class="row">
 
 	<div class="col-lg-12">
-		<h1 class="page-header"><?= $user['name']; ?> <small>professori</small>
+		<h1 class="page-header"><?= $user->getName() ?> <small><?= $user->getTitle() ?></small>
 		</h1>
 	</div>
 
@@ -18,7 +18,7 @@ global $user;
 	<div class="col-md-4">
 		<h3>Henkilökuvaus</h3>
 		<p class="editable" data-type="textarea" data-pk="1" data-url="libs/editable-userpage.php" data-title="Muokkaa henkilökuvausta" data-placement="bottom">
-			<?= $user['descr']; ?>
+			<?= $user->getDescription() ?>
 		</p>
 
 		<h3>Tagit</h3>
@@ -62,6 +62,6 @@ global $user;
 <script type="text/javascript">
 	$(function() {
 		$("#tagcloud").jQCloud([{text: "Ankka", weight: 1},{text: "Mies", weight: 3},{text: "Professori", weight: 4}]);
-		$('.editable').editable();
+		<? if($data->edit) echo "$('.editable').editable();"; // $allow_edit ?>
 	});
 </script>

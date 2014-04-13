@@ -23,17 +23,17 @@ if (isset($_POST['add-submit'])) {
 				if ($t2 != null) {
 					// TODO Tagit vaatii refactorointia
 					// TODO Lisää tagit tietokantaan explode(",") jne... Ensin ^^
-					$_SESSION['tsoha-errors'][] = "Rekisteröinti onnistui.";
+					error("Rekisteröinti onnistui.");
 					unset($_SESSION['tsoha-register-tempdata']);
 				}
 			} else {
-				$_SESSION['tsoha-errors'][] = "Tunnuksen luonti epäonnistui! Ei näin! >:(";
+				error("Tunnuksen luonti epäonnistui! Ei näin! >:(");
 			}
 		} else {
-			$_SESSION['tsoha-errors'][] = "Hei, salasanasi ei nyt oikein täsmää!";
+			error("Hei, salasanasi ei nyt oikein täsmää!");
 		}
 	} else {
-		$_SESSION['tsoha-errors'][] = "Nyt taisi joku kenttä jäädä täyttämättä... ? Onneksi täytetyt on jo esitäytetty! :D";
+		error("Nyt taisi joku kenttä jäädä täyttämättä... ? Onneksi täytetyt on jo esitäytetty! :D");
 	}
 }
 $_SESSION['tsoha-register-tempdata'] = $_POST;

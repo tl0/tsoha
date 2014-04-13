@@ -8,4 +8,5 @@ Tietokantasovellus - [Henkilögalleria][1]
 PHP & PostgreSQL
 
 http://teemulin.users.cs.helsinki.fi/tsoha/esittelysivu.html
+
 http://teemulin.users.cs.helsinki.fi/tsoha/

@@ -1,5 +1,5 @@
 <?php
-
+	//global $data;
 ?><!DOCTYPE html>
 <html>
 <head>
@@ -63,7 +63,7 @@
 						</form>
 						<br>
 						<p class="bg-info">Ei tunnusta? Voi voi :)<br><small>protip, luo itsestäsi sivu ja saat tunnukset about automaattisesti!</small></p>
-						<?php } else { echo "Tervetuloa<br>Work in progress<br><br><a href='libs/login.php?a=logout'>Kirjaudu ulos</a>"; } ?>
+						<?php } else { echo "Tervetuloa ".Account::getLoggedInAccount()->getEmail()."<br>",(Account::getLoggedInAccount()->getAdmin()) ? "<a href='admin.php'>Adminoi</a>" : "","<br><br><a href='libs/login.php?a=logout'>Kirjaudu ulos</a>"; } ?>
 					</div>
 				</li>
 			</ul>
@@ -77,15 +77,15 @@
 
 		if(isset($_SESSION['tsoha-errors'])) {
 			foreach($_SESSION['tsoha-errors'] as $i) {
-				echo "<div class='bg-info' style='padding: 10px;'>" . $i . "</div>";
+				echo "<div class='alert alert-warning' style='padding: 10px;'>" . $i . "</div>";
 			}
 			unset($_SESSION['tsoha-errors']);
 		}
 
 		if(isset($data->innerContent)) {
-			showView($data->innerContent);
+			showView($data->innerContent, $data);
 		} else {
-			echo "Ei?";
+			showView("page/error");
 		}
 	?>
 
@@ -94,7 +94,7 @@
 	<footer>
 		<div class="row">
 			<div class="col-lg-12">
-				<p>TSOHA</p>
+				<p>Tietokantasovellus 2014</p>
 			</div>
 		</div>
 	</footer>

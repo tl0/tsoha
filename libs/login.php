@@ -16,11 +16,11 @@
 		if($t != null) {
 
 			$_SESSION["tsoha-session"] = session_id();
-			$sess = $db->prepare("INSERT INTO sessions (sessid, userid, timecreated, timeused) VALUES (?, ?, ?, ?)");
+			$sess = $db->prepare("INSERT INTO sessions (sessid, accid, timecreated, timeused) VALUES (?, ?, ?, ?)");
 			$sess->execute(array(session_id(), $t->accid, time(), time()));
-			$_SESSION['tsoha-errors'][] = "Tervetuloa, olet kirjautunut sisään.";
+			error("Tervetuloa, olet kirjautunut sisään.");
 		} else {
-			$_SESSION['tsoha-errors'][] = "Virheellinen kirjautuminen!";
+			error("Virheellinen kirjautuminen!");
 		}
 	}
 

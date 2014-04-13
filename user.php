@@ -1,12 +1,20 @@
 <?php
 require_once("libs/common.php");
+require_once("libs/models/Person.php");
 
-$stmt = $db->prepare("SELECT * FROM people WHERE userid = ?");
+$user = Person::getUserByID($_GET['id']);
 
-$stmt->execute(array($_GET['id']));
+$allow_edit = (Account::getLoggedInAccount()->getAdmin() || Account::getLoggedInAccount()->getPerson()->getId() == $_GET['id']);
+if(Account::getLoggedInAccount()->getAdmin() || Account::getLoggedInAccount()->getPerson()->getId() == $_GET['id'] || Person::getUserByID($_GET['id'])->getPublished()) {
+	showView("base", array(
+		'innerContent' => "page/user",
+		'user' => $user,
+		'edit' => $allow_edit
+	));
+} else {
 
-$user = $stmt->fetch();
-
-showView("base", array(
-	'innerContent' => "page/user"
-));
+	error("WOW! Käyttäjän sivuja ei ole julkaistu! Mee pois!");
+	showView("base", array(
+		'innerContent' => 'page/error'
+	));
+}
