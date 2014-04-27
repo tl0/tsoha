@@ -17,7 +17,7 @@ global $user;
 
 	<div class="col-md-8">
 		<? if (Account::getLoggedInAccount()->getPerson()->getDefaultimg() != null) {
-			echo "<img class='img-responsive' src='upload/" . Account::getLoggedInAccount()->getPerson()->getDefaultImgPath() . "' style='max-height: 500px; max-width: 750px;'>";
+			echo "<img class='img-responsive' src='upload/" . Person::getUserByID($user->getId())->getDefaultImgPath() . "' style='max-height: 500px; max-width: 750px;'>";
 		} else {
 			echo "<img class='img-responsive' src='http://placehold.it/750x500&text=No%20image' style='max-height: 500px; max-width: 750px;'>";
 
