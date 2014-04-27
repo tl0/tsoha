@@ -1,6 +1,7 @@
 <?php
 
-class Person {
+class Person
+{
 	private $id;
 	private $name;
 	private $title;
@@ -8,12 +9,14 @@ class Person {
 	private $published;
 	private $timecreated;
 	private $timemodified;
+	private $defaultimg;
 
-	public static function getUserByID($userID) {
+	public static function getUserByID($userID)
+	{
 		$stmt = getDB()->prepare("SELECT * FROM people WHERE userid = ? LIMIT 1");
 		$stmt->execute(array($userID));
 		$result = $stmt->fetchObject();
-		if($result != null) {
+		if ($result != null) {
 			$temp = new Person();
 			$temp->setID($result->userid);
 			$temp->setName($result->name);
@@ -22,6 +25,7 @@ class Person {
 			$temp->setPublished($result->published);
 			$temp->setTimeCreated($result->timecreated);
 			$temp->setTimeModified($result->timemodified);
+			$temp->setDefaultimg($result->defaultimg);
 
 			return $temp;
 		} else {
@@ -30,11 +34,90 @@ class Person {
 	}
 
 
-
-
+	public function save()
+	{
+		$stmt = getDB()->prepare("UPDATE people SET name= :name, descr = :descr, timemodified = :modified, title= :title, published = :published, defaultimg = :defaultimg WHERE userid = :id");
+		$stmt->bindValue("name", $this->getName());
+		$stmt->bindValue("descr", $this->getDescription());
+		$stmt->bindValue("modified", $this->getTimemodified());
+		$stmt->bindValue("title", $this->getTitle());
+		$stmt->bindValue("published", $this->getPublished());
+		if ($this->getDefaultimg() == null) {
+			$stmt->bindValue("defaultimg", null, PDO::PARAM_NULL);
+		} else {
+			$stmt->bindValue("defaultimg", $this->getDefaultimg());
+		}
+		$stmt->bindValue("id", $this->getId());
+		$stmt->execute();
+	}
 
 
 	// GETTERS & SETTERS
+
+	public function getTags()
+	{
+		$stmt = getDB()->prepare("SELECT * FROM tagset INNER JOIN tags ON tagset.tagid = tags.tagid WHERE tagset.userid = ?");
+		$stmt->execute(array($this->getId()));
+		$result = $stmt->fetchAll(PDO::FETCH_CLASS);
+		if ($result != null) {
+			return $result;
+		} else {
+			return array();
+		}
+	}
+
+	public function getImages()
+	{
+		$stmt = getDB()->prepare("SELECT * FROM images WHERE userid = ?");
+		$stmt->execute(array($this::getId()));
+		$result = $stmt->fetchAll(PDO::FETCH_CLASS);
+		if ($result != null) {
+			return $result;
+		} else {
+			return array();
+		}
+	}
+
+	public function getAnswers()
+	{
+		$stmt = getDB()->prepare("SELECT * FROM answer INNER JOIN questions ON answer.qid = questions.qid WHERE userid = ?");
+		$stmt->execute(array($this::getId()));
+		$result = $stmt->fetchAll(PDO::FETCH_CLASS);
+		if ($result != null) {
+			return $result;
+		} else {
+			return array();
+		}
+	}
+
+	/**
+	 * @param mixed $defaultimg
+	 */
+	public function setDefaultimg($defaultimg)
+	{
+		$this->defaultimg = $defaultimg;
+	}
+
+	public function getDefaultImgPath()
+	{
+		$stmt = getDB()->prepare("SELECT * FROM people INNER JOIN images ON images.imgid = people.defaultimg WHERE people.userid = ?");
+		$stmt->execute(array($this::getId()));
+		$result = $stmt->fetchObject();
+		if ($result != null) {
+			return $result->imgpath;
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getDefaultimg()
+	{
+		return $this->defaultimg;
+	}
+
 
 	/**
 	 * @param mixed $timemodified
@@ -147,8 +230,6 @@ class Person {
 	{
 		return $this->published;
 	}
-
-
 
 
 }

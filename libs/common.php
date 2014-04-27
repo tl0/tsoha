@@ -18,6 +18,7 @@ if (isset($_POST)) {
 require_once("connect.php");
 require_once("models/Account.php");
 require_once("models/Person.php");
+require_once("models/Image.php");
 
 function showView($page, $data = array())
 {

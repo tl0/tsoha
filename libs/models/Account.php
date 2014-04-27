@@ -30,12 +30,19 @@ class Account {
 		$result = $stmt->fetchObject();
 		if($result != null) {
 			return Account::getAccByID($result->accid);
+		} else {
+			return null;
 		}
 	}
 
 	public static function getLoggedInAccount() {
 		if(isset($_SESSION['tsoha-session'])) {
-			return Account::getAccBySession($_SESSION['tsoha-session']);
+			if(Account::getAccBySession($_SESSION['tsoha-session']) != null) {
+				return Account::getAccBySession($_SESSION['tsoha-session']);
+			} else {
+				unset($_SESSION['tsoha-session']);
+				return new Account();
+			}
 		} else {
 			return new Account();
 		}

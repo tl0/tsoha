@@ -9,7 +9,10 @@ if(Account::getLoggedInAccount()->getAdmin() || Account::getLoggedInAccount()->g
 	showView("base", array(
 		'innerContent' => "page/user",
 		'user' => $user,
-		'edit' => $allow_edit
+		'edit' => $allow_edit,
+		'questions' => Person::getUserByID($_GET['id'])->getAnswers(),
+		'images' => Person::getUserByID($_GET['id'])->getImages(),
+		'tagit' => Person::getUserByID($_GET['id'])->getTags()
 	));
 } else {
 

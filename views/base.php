@@ -15,7 +15,7 @@
 	<link href="css/bootstrap-tagsinput.css" rel="stylesheet">
 	<link href="css/bootstrap-editable.css" rel="stylesheet">
 
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 	<script src="js/bootstrap-tagsinput.min.js"></script>
 	<script src="js/jqcloud.min.js"></script>
@@ -63,7 +63,7 @@
 						</form>
 						<br>
 						<p class="bg-info">Ei tunnusta? Voi voi :)<br><small>protip, luo itsestäsi sivu ja saat tunnukset about automaattisesti!</small></p>
-						<?php } else { echo "Tervetuloa ".Account::getLoggedInAccount()->getEmail()."<br>",(Account::getLoggedInAccount()->getAdmin()) ? "<a href='admin.php'>Adminoi</a>" : "","<br><br><a href='libs/login.php?a=logout'>Kirjaudu ulos</a>"; } ?>
+						<?php } else { echo "Tervetuloa <a href='user.php?id=".Account::getLoggedInAccount()->getUserId()."'>".Account::getLoggedInAccount()->getEmail()."</a><br>",(Account::getLoggedInAccount()->getAdmin()) ? "<a href='admin.php'>Adminoi</a>" : "<a href='panel.php'>Omat tiedot</a>","<br><br><a href='libs/login.php?a=logout'>Kirjaudu ulos</a>"; } ?>
 					</div>
 				</li>
 			</ul>

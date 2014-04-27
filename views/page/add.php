@@ -18,7 +18,7 @@
 			</div>
 			<div class="form-group">
 				<label for="register-tags">Tags!</label>
-				<input <? if(isset($tempdata['register-tags'])) { echo "value='".$tempdata['register-tags']."'"; } ?> type="text" value="Helsingin,Yliopisto" data-role="tagsinput" name="register-tags" />
+				<input <? if(isset($tempdata['register-tags'])) { echo "value='".$tempdata['register-tags']."'"; } ?> type="text" value="Helsingin,Yliopisto" data-role="tagsinput" name="register-tags" /> protip: paina enter tagin jälkeen
 			</div>
 			<hr>
 			<h3>Nyt jotain henkilökohtaisempaa... <small>Tunnustasi varten! Ei näy ulkomaailmaan!</small></h3>
