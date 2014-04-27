@@ -19,7 +19,7 @@ if (Account::getLoggedInAccount()->getPerson()->getId() != null) {
 		$name = strip_tags(trim($_POST['name']));
 		$value = strip_tags(trim($_POST['value']));
 
-		$ans = getDB()->prepare("INSERT INTO answer (qid, userid, answ) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE");
+		$ans = getDB()->prepare("INSERT INTO answer (qid, userid, answ) VALUES (?, ?, ?)");
 		$ans->execute(array($pk, Account::getLoggedInAccount()->getPerson()->getId(), $value));
 		if(getDB()->errorCode() != null) {
 			$ans = getDB()->prepare("UPDATE answer SET answ = ? WHERE userid = ? AND qid = ?");
